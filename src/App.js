@@ -5,7 +5,7 @@ import Footer from "./SPA/Footer";
 import Content from "./SPA/Content";
 
 import SideMenu from "./SPA/SideMenu";
-import LoginForm from "./Components/LoginForm";
+import LoginForm from "./SPA/LoginForm";
 
 function App() {
 

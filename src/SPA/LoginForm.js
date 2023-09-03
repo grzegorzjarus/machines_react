@@ -12,6 +12,7 @@ const LoginForm = () => {
 
     const handleLogin = async () => {
         try {
+            console.log(JSON.stringify({email,password}))
             const response = await fetch("http://localhost:8080/auth/authenticate", {
                 method: "POST",
                 headers: {
@@ -20,9 +21,9 @@ const LoginForm = () => {
                 body: JSON.stringify({email,password}),
 
             });
-
+            // console.log(response.token);
             console.log(response);
-            window.location.href = "/usersList";
+            // window.location.href = "/usersList";
 
             //const token = response;
             // const decoded = jwt_decode(response);
@@ -37,7 +38,9 @@ const LoginForm = () => {
             }
 
             const data = await response.json();
-            console.log(data);
+            console.log(data.token);
+            localStorage.setItem("currentToken", data.token)
+            window.location.href= "/usersList";
           //  const token = data.token;
 
             // Store the JWT token in cookies or local storage securely

@@ -9,6 +9,7 @@ import 'leaflet/dist/leaflet.css';
 import './content.css';
 import Header from "./Header";
 import List from "./List";
+import UserList from "./UserList";
 //import {List} from "antd";
 
 const Content = () => {
@@ -21,7 +22,8 @@ const Content = () => {
                 <Route path="/" element = {<Map startDate={startDate} endDate={endDate}/>}></Route>
                 <Route path="/list" element = {<List startDate={startDate} endDate={endDate}/>}></Route>
                 <Route path="/dashboard" element = {<Order/>}></Route>
-                <Route path="/usersList" element = {<div>Users List</div>}></Route>
+                <Route path="/usersList" element = {<UserList/>}></Route>
+                {/*<Route path="/usersList" element = {<div>Users List</div>}></Route>*/}
                 {/*<Route path="/profile" element = {<div>Profile</div>}></Route>*/}
                 <Route path="/profile" element = {<FetchFromLeaflets/>}></Route>
             </Routes>

@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../firstreactapplication.iml" filepath="$PROJECT_DIR$/../firstreactapplication.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../machines_react.iml" filepath="$PROJECT_DIR$/../machines_react.iml" />
     </modules>
   </component>
 </project>
