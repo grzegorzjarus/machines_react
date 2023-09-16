@@ -9,7 +9,7 @@ import {
 } from "@ant-design/icons";
 import {useNavigate} from "react-router-dom";
 
-const SideMenu = () => {
+const RenterMenu = () => {
     const navigate = useNavigate();
     return (
         <div>
@@ -44,4 +44,4 @@ const SideMenu = () => {
     );
 };
 
-export default SideMenu;
+export default RenterMenu;

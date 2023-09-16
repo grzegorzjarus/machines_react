@@ -38,8 +38,9 @@ const LoginForm = () => {
             }
 
             const data = await response.json();
-            console.log(data.token);
-            localStorage.setItem("currentToken", data.token)
+            console.log("Token: " + data.token);
+            localStorage.setItem("currentToken", data.token);
+            console.log("Token from localStorage: " + localStorage.getItem("currentToken"));
             window.location.href= "/usersList";
           //  const token = data.token;
 

@@ -1,5 +1,5 @@
-//import React, {useEffect} from 'react';
-import {useState,useEffect} from 'react';
+
+import {useState, useEffect} from 'react';
 
 const UserList = () => {
 
@@ -9,23 +9,34 @@ const UserList = () => {
     useEffect(() => {
         // Funkcja do pobierania użytkowników
         let token = localStorage.getItem("currentToken")
+        console.log("Token from userList: " + token);
+
+        let bearerToken = `Bearer ${token}`;
+        console.log(bearerToken);
+
         async function zaczytajUzytkownikow() {
             try {
-                const resp = await fetch('http://localhost:8080/demo/demo-owner',
+                const resp = await fetch('http://localhost:8080/demo/demo-owner',//{mode:'cors'},
                     {
                         method: "GET",
-                            headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": "Bearer " + token,
-                                "Access-Control-Allow-Origin": "*",
-                    },
+                        headers: {
+                            "Content-Type": "application/json",
+                            //"Authorization": "Bearer " + token,
+                            "Authorization": bearerToken,
+
+                            "Access-Control-Allow-Origin": "*",
+                        },
+                        mode: 'cors',
+
                         // body: JSON.stringify({email,password}),
 
-                    }
-                )
+                    });
+                    //.then((response) => response.json());
+               // resp.set('Access-Control-Allow-Origin', '*');
                 const dane = await resp.json();
                 // setUzytkownicy(dane);
-                setOdpowiedz(dane)
+                setOdpowiedz(dane);
+                console.log(odpowiedz)
                 setLoading(false);
             } catch (error) {
                 console.error('Błąd podczas wczytywania użytkowników:', error);
@@ -43,7 +54,7 @@ const UserList = () => {
 
     return (
         <div>
-            <h1>{odpowiedz}</h1>
+            <h1>Odpowiedz = {odpowiedz}</h1>
         </div>
     );
 };

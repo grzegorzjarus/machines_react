@@ -48,7 +48,7 @@ const Order = () => {
                     <option value="Podnośnik nożycowy">Podnośnik nożycowy</option>
                     <option value="Żuraw">Żuraw</option>
                     <option value="Koparka">Koparka</option>
-                    <option value="Mnot pneumatyczny">Mnot pneumatyczny</option>
+                    <option value="Młot pneumatyczny">Młot pneumatyczny</option>
                 </select>
             </div>
             <div>
