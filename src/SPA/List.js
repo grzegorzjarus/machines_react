@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import SearchDate from "./SearchDate";
 import ListContent from "./ListContent";
-import Home from "./Home";
+
 
 
 const List = (props) => {

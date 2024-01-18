@@ -18,6 +18,10 @@ const OwnerMenu = () => {
                 onClick={({key}) => {
                     if (key === "signout") {
                         //TODO
+                        localStorage.removeItem("role");
+                        localStorage.removeItem("name");
+                        localStorage.removeItem("currentToken");
+                        navigate("/");
                     } else {
                         navigate(key);
                     }

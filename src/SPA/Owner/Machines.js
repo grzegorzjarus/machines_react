@@ -1,33 +1,86 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
+import CreateOffer from "./CreateOffer";
 
 const Machines = () => {
     const navigate = useNavigate();
 
     const [data, setData] = useState('');
 
+
+    if( localStorage.getItem("currentToken")===null){
+        navigate("/");
+    }
+
     function addMachineCLick() {
         navigate("/owner/machines/addMachine");
     }
 
-    function createOfferClick() {
-        navigate("/owner/offer/create")
+
+
+    const deleteOfferClick = async (machineId) => {
+        const token = localStorage.getItem("currentToken");
+        const bearerToken = `Bearer ${token}`;
+
+        const body = { "machineId": machineId };
+
+        try {
+            await fetch(`/owner/offer/delete/${machineId}`, {
+                method: 'DELETE',
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": bearerToken,
+                },
+                body: JSON.stringify(body),
+            });
+
+            fetchData(); // Refresh data after deletion
+        } catch (error) {
+            console.error("Błąd: ", error);
+        }
+    };
+
+
+    function createOfferClick(machineId) {
+        console.log("Machine id: " +machineId);
+        localStorage.setItem("machineId", machineId);// I don't know it is good, but it is work
+        console.log("Machine id from localStorage: " + localStorage.getItem("machineId"));
+        console.log("Click from Machines");
+
+
+        navigate(`/owner/offer/create/${machineId}`);
     }
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await fetch("http://localhost:8080/owner/machines");
-                const data = await response.json();
-                setData(data);
-            } catch (error) {
-                console.error(error);
-                setData(null);
-            }
-        };
-        fetchData();
 
-    },[]);
+    const fetchData = async () => {
+        const token = localStorage.getItem("currentToken");
+        const bearerToken = `Bearer ${token}`;
+        console.log(localStorage.getItem("email"));
+
+        try {
+            const response = await fetch("/owner/machines", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": bearerToken,
+                },
+                //body: JSON.stringif
+                // ({"email" : localStorage.getItem("email")}),
+                body: JSON.stringify(localStorage.getItem("email")),
+                //body: {"email": localStorage.getItem("email")},
+            });
+
+            const data = await response.json();
+            setData(data);
+        } catch (error) {
+            console.error(error);
+            setData(null);
+        }
+    };
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
 
 
@@ -48,16 +101,20 @@ const Machines = () => {
 
                 {data && data.map(machine => (
                     <tr key={machine.id}>
-                        <td>{machine.id + " "}</td>
-                        <td>{machine.name + " "}</td>
-                        <td>{machine.description + " "}</td>
-                        <td>{machine.type + " "}</td>
-                        <td>{machine.status + " "}</td>
-                        <td>{machine.status==='FREE'? <button onClick={createOfferClick}>Wystaw na aukcję</button>: machine.status==='ON_AUCTION'?<button>Usuń z aukcji</button>
-                            : <p style={{padding:0}}>U klienta do: 1.01.2100</p> }</td>
-                        {/*<button onClick={handleClick}>Dodaj maszynę</button>*/}
+                        <td>{machine.id}</td>
+                        <td>{machine.name}</td>
+                        <td>{machine.description}</td>
+                        <td>{machine.type}</td>
+                        <td>{machine.status}</td>
+                        <td>{machine.status === 'FREE' ?
+                            <button onClick={() => createOfferClick(machine.id)}>Wystaw na aukcję</button>
+                            : machine.status === 'ON_AUCTION' ?
+                                <button onClick={() => deleteOfferClick(machine.id)}>Usuń
+                                    z aukcji</button>
+                                : <p style={{padding: 0}}>U klienta do: 1.01.2100</p>}</td>
                     </tr>
                 ))}
+
 
                 </tbody>
 

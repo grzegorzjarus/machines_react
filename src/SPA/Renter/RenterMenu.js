@@ -17,14 +17,17 @@ const RenterMenu = () => {
             <Menu
                 onClick={({key}) => {
                     if (key === "signout") {
-                        //TODO
+                        localStorage.removeItem("role");
+                        localStorage.removeItem("name");
+                        localStorage.removeItem("currentToken");
+                        navigate("/");
                     } else {
                         navigate(key);
                     }
                 }}
                 defaultSelectedKeys={[window.location.pathname]}
                 items={[
-                    {label: "Wyszukaj maszynę", key: "/", icon: <HomeOutlined/>},
+                    {label: "Wyszukaj maszynę", key: "/map", icon: <HomeOutlined/>},
                     {label: "Dodaj zapytanie", key: "/dashboard", icon: <DashboardOutlined/>},
                     {
                         label: "Moje zapytania",

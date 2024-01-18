@@ -7,8 +7,7 @@ import ListContent from "./ListContent";
 
 const Map = (props) => {
 
-    console.log("Mapka");
-
+  
 
     const position1 = [51.505, -0.09];
     const position2 = [51.515, -0.25];

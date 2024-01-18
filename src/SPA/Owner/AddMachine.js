@@ -22,10 +22,14 @@ const AddMachine = () => {
 
         console.log(object);
 
+        const token = localStorage.getItem("currentToken");
+        const bearerToken = `Bearer ${token}`;
+
         fetch('http://localhost:8080/owner/machine/add', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
+                "Authorization": bearerToken,
             },
             body : object,
 

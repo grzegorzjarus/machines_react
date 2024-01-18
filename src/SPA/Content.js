@@ -14,6 +14,13 @@ import Machines from "./Owner/Machines";
 import AddMachine from "./Owner/AddMachine";
 import PhotoForm from "./Owner/PhotoForm";
 import CreateOffer from "./Owner/CreateOffer";
+import Geocoding from "./Owner/Geocoding";
+import MyMap from "./Owner/MyMap";
+import LoginForm from "./LoginForm";
+import MainView from "./MainView";
+import Logout from "./Owner/Logout";
+import RegisterForm from "./RegisterForm";
+import AuthForm from "./AuthForm";
 //import {List} from "antd";
 
 const Content = () => {
@@ -23,13 +30,21 @@ const Content = () => {
     return (
         <div style={{width:'100%', height:'100%'}}>
             <Routes>
-                <Route path="/" element = {<Map startDate={startDate} endDate={endDate}/>}></Route>
+                {/*<Route path="/" element = {<LoginForm/>}></Route>*/}
+                <Route path="/" element = {<AuthForm/>}></Route>
+                <Route path="/main" element = {<MainView/>}></Route>
+                <Route path="/map" element = {<Map startDate={startDate} endDate={endDate}/>}></Route>
                 <Route path="/list" element = {<List startDate={startDate} endDate={endDate}/>}></Route>
-                <Route path="/dashboard" element = {<Order/>}></Route>
+                {/*<Route path="//owner/addOffer" element = {<Geocoding/>}></Route>*/}
+                <Route path="/owner/addOffer" element = {<MyMap/>}></Route>
                 <Route path="/usersList" element = {<UserList/>}></Route>
                 <Route path="/owner/machines" element = {<Machines/>}></Route>
                 <Route path="/owner/machines/addMachine" element = {<AddMachine/>}></Route>
-                <Route path="/owner/offer/create" element = {<CreateOffer/>}></Route>
+                <Route path="/signout" element = {<Logout/>}></Route>
+
+                {/*<Route path={`/owner/offer/create/*`} element = {<CreateOffer/>}></Route>*/}
+                {/*<Route path={`/owner/offer/create/${machineId}`} element = {<CreateOffer machineId={machineId}/>}></Route>*/}
+                <Route path={`/owner/offer/create/*`} element = {<CreateOffer />}></Route>
                 {/*<Route path="/owner/machines/addMachine" element = {<PhotoForm/>}></Route>*/}
                 {/*<Route path="/usersList" element = {<div>Users List</div>}></Route>*/}
                 {/*<Route path="/profile" element = {<div>Profile</div>}></Route>*/}
