@@ -24,8 +24,9 @@ import AuthForm from "./AuthForm";
 //import {List} from "antd";
 
 const Content = () => {
-    const startDate= '2023-05-30';
-    const endDate= '2023-06-10';
+    //const startDate= '2024-05-30';
+    const startDate= new Date().getDate();
+    const endDate= new Date().getDate();
     // console.log("Content date: " +date);
     return (
         <div style={{width:'100%', height:'100%'}}>

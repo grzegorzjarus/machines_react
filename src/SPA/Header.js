@@ -4,7 +4,7 @@ import React from "react";
 const Header = () => {
 
     let user = localStorage.getItem("user");
-    let userName = localStorage.getItem("name");
+    let userName = localStorage.getItem("email");
 
     function handleLogout() {
         localStorage.removeItem("role");

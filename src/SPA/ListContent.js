@@ -14,8 +14,10 @@ const ListContent = (props) => {
     }
 
     function compareMachineType(props,item){
-        if(props!=="")
-            return props===item;
+        if(props!==""){
+            console.log(props);
+            console.log(item);
+            return props===item;}
         else return true;
     }
 

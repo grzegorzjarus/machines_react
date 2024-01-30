@@ -78,7 +78,7 @@ const Markers = (props) => {
                     itemEndDate = item.endDate;
                 }
 
-               if (isAfter(start,itemStartDate) && isAfter(itemEndDate,end) && compareMachineType(props.machine,item.machineType)) {
+               if (isAfter(start,itemStartDate) && isAfter(itemEndDate,end) && isAfter(end,start)&& compareMachineType(props.machine,item.machineType)) {
 
                     return (
 

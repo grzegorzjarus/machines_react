@@ -5,8 +5,8 @@ const CreateOffer = () => {
 
     const navigate = useNavigate();
 
-    const [startDate, setStartDate] = useState('');
-    const [endDate, setEndDate] = useState('');
+    const [startDate, setStartDate] = useState(new Date());
+    const [endDate, setEndDate] = useState(new Date());
     const [pricePerDay, setPricePerDay] = useState('');
     const [deliveryPrice, setDeliveryPrice] = useState('');
     const [operator, setOperator] = useState('false');
@@ -27,13 +27,32 @@ const CreateOffer = () => {
 
 
 
+        // const data = {
+        //     "startAvailabilityDate": startDate,
+        //     "endAvailabilityDate": endDate,
+        //     "pricePerDay": pricePerDay,
+        //     "deliveryPrice": deliveryPrice,
+        //     "offerWithOperator": operator
+        // }
+
+        // const options = { day: 'numeric', month: 'numeric', year: 'numeric' };
+        // const formattedStartDate = startDate.toLocaleDateString('en-GB');
+        // const formattedEndDate = endDate.toLocaleDateString('en-GB');
+
         const data = {
-            "startAvailabilityDate": startDate,
-            "endAvailabilityDate": endDate,
-            "pricePerDay": pricePerDay,
-            "deliveryPrice": deliveryPrice,
-            "offerWithOperator": operator
+            offer: {
+                "startAvailabilityDate": startDate,
+                "endAvailabilityDate": endDate,
+                "pricePerDay": pricePerDay,
+                "deliveryPrice": deliveryPrice,
+                "offerWithOperator": operator
+            },
+            email: {
+                "email": localStorage.getItem("email")
+            }
         };
+
+
 
         const object = JSON.stringify(data);
 
@@ -52,6 +71,7 @@ const CreateOffer = () => {
                 headers: {
                     "Content-Type": "application/json",
                     "Authorization": bearerToken,
+                    "Email": localStorage.getItem("email"),
                     // 'Access-Control-Allow-Origin':'*'
                 },
                 body: object,
@@ -81,7 +101,9 @@ const CreateOffer = () => {
                 <form onSubmit={handleSendClick}>
                 <label>Dostępność od: </label>
                 <input type="date"  onChange={ (event) =>setStartDate(event.target.value)}/>
-                <label> Dostępność do: </label>
+
+
+                    <label> Dostępność do: </label>
                 <input type="date"  onChange={ (event) =>setEndDate(event.target.value)}/>
 
                 <br/>

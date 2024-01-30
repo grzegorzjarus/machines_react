@@ -68,7 +68,10 @@ const AuthForm = () => {
                     localStorage.setItem("email", user.email);
                     console.log("Rola usera: " + user.role);
                     console.log("User from localStorage after logging: " +localStorage.getItem("user"));
+
+                    if(localStorage.getItem("role")==="OWNER")
                     navigate("/owner/machines");
+                    else navigate("/map");
 
                 } catch (error) {
                     // Handle login errors

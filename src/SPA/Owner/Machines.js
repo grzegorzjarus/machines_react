@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import CreateOffer from "./CreateOffer";
+import '../Renter/Table.css';
 
 const Machines = () => {
     const navigate = useNavigate();
@@ -86,7 +87,7 @@ const Machines = () => {
 
     return (
         <>
-            <table className="table">
+            <table className="styled-table">
                 <thead>
                 <tr>
                     <th>ID</th>

@@ -3,6 +3,7 @@ import {MapContainer, TileLayer, Marker, Popup, useMap} from 'react-leaflet';
 import Markers from "./Markers";
 import SearchDate from "./SearchDate";
 import ListContent from "./ListContent";
+import OfferList from "./Renter/OfferList";
 
 
 const Map = (props) => {
@@ -76,13 +77,14 @@ const Map = (props) => {
     }
 
 
-
     let content =
                 <MapContainer center={[51.505, -0.09]} zoom={12} scrollWheelZoom={true}>
                     <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"/>
                     <Markers data={data2} startDate={startDate} endDate={endDate} machine={machineType}/>
                 </MapContainer>
-    if(!isMap) content = <ListContent data={data2} startDate={startDate} endDate={endDate} machine={machineType}/>
+     //if(!isMap) content = <ListContent data={data} startDate={startDate} endDate={endDate} machine={machineType}/>
+    // if(!isMap) content = <OfferList data={getOffers()} startDate={startDate} endDate={endDate} machine={machineType}/>
+    if(!isMap) content = <OfferList startDate={startDate} endDate={endDate} machine={machineType}/>
 
     return (
 
