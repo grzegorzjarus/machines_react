@@ -11,14 +11,20 @@ const AddMachine = () => {
 
 
     function handleSubmit() {
+        const email = localStorage.getItem("email");
 
-        const data = {
+        const machineAndEmail = {
+            machine:{
             "type": type,
             "name": name,
-            "description": description
+            "description": description},
+
+            email: {
+                email
+            }
         };
 
-        const object = JSON.stringify(data);
+        const object = JSON.stringify(machineAndEmail);
 
         console.log(object);
 

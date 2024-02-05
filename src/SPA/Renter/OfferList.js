@@ -33,26 +33,29 @@ const OfferList = (props) => {
         return first>=second;
     }
 
-     function sendRequest(offerId) {
+     function sendRequest(offer,start,end) {
 
-        console.log(offerId);
+        console.log(offer.id);
         console.log(start);
         console.log(end);
         console.log(localStorage.getItem("email"));
 
 
         const data = {
-            "offerId": offerId,
+            "offerId": offer.id,
             "email": localStorage.getItem("email"),
             "start": start,
-            "end": end
+            "end": end,
+            "price": calculatePrice(offer,start,end)
         };
 
         //localStorage.setItem("offerId", offerId);
         const token = localStorage.getItem('currentToken');
         const bearerToken = `Bearer ${token}`;
 
-        fetch(`http://localhost:8080/renter/offer/response`, {
+
+
+        fetch(`renter/offer/response`, {
 
             method: 'POST',
             headers: {
@@ -61,7 +64,7 @@ const OfferList = (props) => {
                 'Access-Control-Allow-Origin':'*'
             },
             body: JSON.stringify(data),
-            mode: 'cors',
+            //mode: 'cors',
         })
             .then((response) => response.json())
             .then((object) => {
@@ -89,6 +92,10 @@ const OfferList = (props) => {
         const daysDifference = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
 
         return daysDifference;
+    }
+
+    function calculatePrice(offer,start,end){
+        return offer.pricePerDay * calculateDaysDifference(start, end) + offer.deliveryPrice
     }
 
 
@@ -190,8 +197,9 @@ const OfferList = (props) => {
                                 <td>{offer.pricePerDay}</td>
                                 <td>{offer.deliveryPrice}</td>
                                 <td>{offer.owner.companyName}</td>
-                                <td style={{color: "red"}}>{offer.pricePerDay * calculateDaysDifference(start, end) + offer.deliveryPrice}</td>
-                                <td><button onClick={()=>sendRequest(offer.id)}>Wyślij zapytanie</button></td>
+                                {/*<td style={{color: "red"}}>{offer.pricePerDay * calculateDaysDifference(start, end) + offer.deliveryPrice}</td>*/}
+                                <td style={{color: "red"}}>{calculatePrice(offer,start,end)}</td>
+                                <td><button onClick={()=>sendRequest(offer,start,end)}>Wyślij zapytanie</button></td>
                             </tr>
                         );
                     } else {

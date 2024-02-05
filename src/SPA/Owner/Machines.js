@@ -56,7 +56,8 @@ const Machines = () => {
     const fetchData = async () => {
         const token = localStorage.getItem("currentToken");
         const bearerToken = `Bearer ${token}`;
-        console.log(localStorage.getItem("email"));
+        const email = JSON.stringify(localStorage.getItem("email"));
+        console.log("EMail from fetch: " + email);
 
         try {
             const response = await fetch("/owner/machines", {
@@ -65,14 +66,16 @@ const Machines = () => {
                     "Content-Type": "application/json",
                     "Authorization": bearerToken,
                 },
-                //body: JSON.stringif
-                // ({"email" : localStorage.getItem("email")}),
-                body: JSON.stringify(localStorage.getItem("email")),
+
+               body: email,
+               // body: JSON.stringify(email),
                 //body: {"email": localStorage.getItem("email")},
             });
 
             const data = await response.json();
             setData(data);
+            console.log("Email from fetch: " +email);
+            console.log("Data from fetch " + data);
         } catch (error) {
             console.error(error);
             setData(null);
