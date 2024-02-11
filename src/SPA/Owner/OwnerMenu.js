@@ -35,7 +35,7 @@ const OwnerMenu = () => {
                         key: "/owner/offers",
                         icon: <UnorderedListOutlined/>,
                         children: [
-                            {label: "Aktywne", key: "/owner/offers/active"},
+                            {label: "W trakcie licytacji", key: "/owner/offers/active"},
                             {label: "W trakcie realizacji", key: "/owner/offers/inProgress", danger:true},
                             {label: "Poprzednie", key: "/owner/offers/past"}
                         ]

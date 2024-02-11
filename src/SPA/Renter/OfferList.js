@@ -151,13 +151,13 @@ const OfferList = (props) => {
                 <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Rodzaj maszyny</th>
+                    <th>Rodzaj maszyny:</th>
                     <th>Dostępność od: </th>
                     <th>Dostępność do:</th>
-                    <th>Cena za dzień</th>
-                    <th>Koszt dostarczenia</th>
-                    <th>Nazwa firmy</th>
-                    <th style={{ color:"red"}}>Szacunkowy koszt całkowity*</th>
+                    <th>Cena za dzień:</th>
+                    <th>Koszt dostarczenia:</th>
+                    <th>Nazwa firmy:</th>
+                    <th style={{ color:"red"}}>Całkowity koszt wynajmu</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -194,11 +194,11 @@ const OfferList = (props) => {
                                 {/*<td>{offer.startAvailabilityDate}</td>*/}
                                 <td>{new Date(offer.startAvailabilityDate).toLocaleDateString('pl-PL')}</td>
                                 <td>{new Date(offer.endAvailabilityDate).toLocaleDateString('pl-PL')}</td>
-                                <td>{offer.pricePerDay}</td>
-                                <td>{offer.deliveryPrice}</td>
+                                <td>{offer.pricePerDay} zł</td>
+                                <td>{offer.deliveryPrice} zł</td>
                                 <td>{offer.owner.companyName}</td>
                                 {/*<td style={{color: "red"}}>{offer.pricePerDay * calculateDaysDifference(start, end) + offer.deliveryPrice}</td>*/}
-                                <td style={{color: "red"}}>{calculatePrice(offer,start,end)}</td>
+                                <td style={{color: "red"}}>{calculatePrice(offer,start,end)} zł</td>
                                 <td><button onClick={()=>sendRequest(offer,start,end)}>Wyślij zapytanie</button></td>
                             </tr>
                         );

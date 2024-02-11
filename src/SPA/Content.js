@@ -21,6 +21,9 @@ import MainView from "./MainView";
 import Logout from "./Owner/Logout";
 import RegisterForm from "./RegisterForm";
 import AuthForm from "./AuthForm";
+import ActiveOffers from "./Owner/ActiveOffers";
+import RenterOffers from "./Owner/RenterOffers";
+import PastOffers from "./Owner/PastOffers";
 //import {List} from "antd";
 
 const Content = () => {
@@ -41,6 +44,9 @@ const Content = () => {
                 <Route path="/usersList" element = {<UserList/>}></Route>
                 <Route path="/owner/machines" element = {<Machines/>}></Route>
                 <Route path="/owner/machines/addMachine" element = {<AddMachine/>}></Route>
+                <Route path="/owner/offers/active" element = {<ActiveOffers/>}></Route>
+                <Route path="/owner/offers/renter" element = {<RenterOffers/>}></Route>
+                <Route path="/owner/offers/past" element = {<PastOffers/>}></Route>
                 <Route path="/signout" element = {<Logout/>}></Route>
 
                 {/*<Route path={`/owner/offer/create/*`} element = {<CreateOffer/>}></Route>*/}
